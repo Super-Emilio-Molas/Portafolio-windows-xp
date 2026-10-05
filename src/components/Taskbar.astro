@@ -1,0 +1,31 @@
+---
+// Barra de tareas estilo XP
+---
+
+<div class="taskbar">
+  <div class="start-button">
+    <span class="start-button-icon">🪟</span>
+    <span>Inicio</span>
+  </div>
+
+  <div class="taskbar-apps" id="taskbarApps"></div>
+
+  <div class="taskbar-tray">
+    <span class="tray-icon">🔊</span>
+    <span class="tray-icon">🛡️</span>
+    <span id="taskbarClock">--:--</span>
+  </div>
+</div>
+
+<script>
+  // Reloj de la bandeja
+  function updateClock() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    const el = document.getElementById('taskbarClock');
+    if (el) el.textContent = `${hh}:${mm}`;
+  }
+  updateClock();
+  setInterval(updateClock, 30000);
+</script>

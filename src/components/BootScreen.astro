@@ -1,0 +1,33 @@
+---
+// Pantalla de arranque estilo Windows XP
+---
+
+<div class="boot-screen" id="bootScreen">
+  <div class="boot-logo">
+    Microsoft<sup style="font-size:14px;">®</sup>
+    <span>Windows</span><small>xp</small>
+  </div>
+
+  <div class="boot-bar">
+    <div class="boot-bar-inner"></div>
+  </div>
+
+  <div class="boot-footer">
+    <strong>Microsoft Corporation</strong><br />
+    Copyright © Microsoft Corporation
+  </div>
+</div>
+
+<script>
+  // Oculta la pantalla de arranque al terminar y muestra el escritorio
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const boot = document.getElementById('bootScreen');
+      const desktop = document.querySelector('.desktop') as HTMLElement | null;
+      if (boot) boot.classList.add('hidden');
+      if (desktop) desktop.classList.add('visible');
+      // Elimina del DOM después de la transición
+      setTimeout(() => boot?.remove(), 900);
+    }, 3600);
+  });
+</script>

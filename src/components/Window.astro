@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  icon?: string;
+  width?: number;
+  height?: number;
+}
+
+const { id, title, icon = '📄', width = 480, height = 320 } = Astro.props;
+---
+
+<div
+  class="xp-window"
+  id={`window-${id}`}
+  data-window-id={id}
+  style={`width:${width}px; height:${height}px; top:80px; left:160px;`}
+>
+  <div class="xp-titlebar" data-drag-handle>
+    <span class="xp-titlebar-icon">{icon}</span>
+    <span class="xp-titlebar-title">{title}</span>
+    <div class="xp-titlebar-buttons">
+      <button class="xp-tb-btn" data-action="minimize" title="Minimizar">_</button>
+      <button class="xp-tb-btn" data-action="maximize" title="Maximizar">□</button>
+      <button class="xp-tb-btn close" data-action="close" title="Cerrar">✕</button>
+    </div>
+  </div>
+  <div class="xp-window-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .xp-window[hidden] {
+    display: none !important;
+  }
+</style>

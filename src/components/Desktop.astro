@@ -1,0 +1,180 @@
+---
+import Window from './Window.astro';
+---
+
+<div class="desktop">
+  <!-- Iconos del escritorio -->
+  <div class="desktop-icons">
+    <div class="desktop-icon" data-open="about">
+      <span class="desktop-icon-img">🖥️</span>
+      <span class="desktop-icon-label">Mi PC<br />(Sobre mí)</span>
+    </div>
+
+    <div class="desktop-icon" data-open="proyectos">
+      <span class="desktop-icon-img">📁</span>
+      <span class="desktop-icon-label">Mis proyectos</span>
+    </div>
+
+    <div class="desktop-icon" data-open="contacto">
+      <span class="desktop-icon-img">📧</span>
+      <span class="desktop-icon-label">Contacto</span>
+    </div>
+
+    <div class="desktop-icon" data-open="internet">
+      <span class="desktop-icon-img">🌐</span>
+      <span class="desktop-icon-label">Internet</span>
+    </div>
+
+    <div class="desktop-icon" data-open="musica">
+      <span class="desktop-icon-img">🎵</span>
+      <span class="desktop-icon-label">Mi música</span>
+    </div>
+
+    <div class="desktop-icon" data-open="papelera">
+      <span class="desktop-icon-img">🗑️</span>
+      <span class="desktop-icon-label">Papelera</span>
+    </div>
+  </div>
+
+  <!-- Ventanas (ocultas por defecto) -->
+  <Window id="about" title="Sobre mí - Mi PC" icon="🖥️" width={520} height={360} hidden>
+    <h2>¡Hola! Soy [Tu Nombre] 👋</h2>
+    <p>Soy desarrollador/a web y este es mi portafolio con temática Windows XP.</p>
+    <p>Aquí puedes conocerme un poco mejor y ver en qué trabajo.</p>
+  </Window>
+
+  <Window id="proyectos" title="C:\Mis Proyectos" icon="📁" width={600} height={400} hidden>
+    <h2>Proyectos</h2>
+    <p>Aquí irán tus proyectos. Los conectaremos con Content Collections más adelante.</p>
+  </Window>
+
+  <Window id="contacto" title="Outlook Express - Contacto" icon="📧" width={480} height={320} hidden>
+    <h2>Contacto</h2>
+    <p>📧 Email: tunombre@ejemplo.com</p>
+    <p>💼 LinkedIn: /in/tunombre</p>
+    <p>🐙 GitHub: @tunombre</p>
+  </Window>
+
+  <Window id="internet" title="Internet Explorer" icon="🌐" width={520} height={360} hidden>
+    <h2>Internet</h2>
+    <p>Enlaces a mis perfiles y redes.</p>
+  </Window>
+
+  <Window id="musica" title="Winamp - Mi música" icon="🎵" width={420} height={280} hidden>
+    <h2>Lo que me gusta escuchar</h2>
+    <p>🎵 [Tus gustos musicales aquí]</p>
+  </Window>
+
+  <Window id="papelera" title="Papelera de reciclaje" icon="🗑️" width={480} height={320} hidden>
+    <h2>Cosas que aprendí por el camino</h2>
+    <p>Notas, tips, curiosidades…</p>
+  </Window>
+</div>
+
+<script>
+  // ---- Manejo de ventanas ----
+  const windows = document.querySelectorAll<HTMLElement>('.xp-window');
+
+  function getWindow(id: string) {
+    return document.getElementById(`window-${id}`);
+  }
+
+  function bringToFront(win: HTMLElement) {
+    windows.forEach((w) => {
+      w.classList.remove('active');
+      const tb = w.querySelector('.xp-titlebar');
+      if (tb) tb.classList.add('inactive');
+    });
+    win.classList.add('active');
+    const tb = win.querySelector('.xp-titlebar');
+    if (tb) tb.classList.remove('inactive');
+  }
+
+  function openWindow(id: string) {
+    const win = getWindow(id);
+    if (!win) return;
+    win.hidden = false;
+    bringToFront(win);
+  }
+
+  function closeWindow(id: string) {
+    const win = getWindow(id);
+    if (!win) return;
+    win.hidden = true;
+  }
+
+  // Abrir al hacer click en un icono del escritorio
+  document.querySelectorAll<HTMLElement>('.desktop-icon').forEach((icon) => {
+    icon.addEventListener('dblclick', () => {
+      const id = icon.dataset.open;
+      if (id) openWindow(id);
+    });
+    // Un solo click selecciona
+    icon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.desktop-icon').forEach((i) => i.classList.remove('selected'));
+      icon.classList.add('selected');
+    });
+  });
+
+  // Click en el fondo deselecciona
+  document.querySelector('.desktop')?.addEventListener('click', () => {
+    document.querySelectorAll('.desktop-icon').forEach((i) => i.classList.remove('selected'));
+  });
+
+  // Botones de cada ventana (cerrar/minimizar/maximizar)
+  document.querySelectorAll<HTMLButtonElement>('.xp-tb-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const action = btn.dataset.action;
+      const win = btn.closest<HTMLElement>('.xp-window');
+      if (!win) return;
+      const id = win.dataset.windowId!;
+
+      if (action === 'close') closeWindow(id);
+      if (action === 'minimize') win.hidden = true;
+      if (action === 'maximize') {
+        win.style.width = '90vw';
+        win.style.height = 'calc(100vh - 60px)';
+        win.style.top = '10px';
+        win.style.left = '5vw';
+      }
+    });
+  });
+
+  // Foco al hacer click en cualquier parte de la ventana
+  windows.forEach((w) => {
+    w.addEventListener('mousedown', () => bringToFront(w));
+  });
+
+  // ---- Arrastrar ventanas ----
+  let dragState: { win: HTMLElement; offsetX: number; offsetY: number } | null = null;
+
+  document.querySelectorAll<HTMLElement>('[data-drag-handle]').forEach((handle) => {
+    handle.addEventListener('mousedown', (e) => {
+      const win = handle.closest<HTMLElement>('.xp-window');
+      if (!win) return;
+      const rect = win.getBoundingClientRect();
+      dragState = {
+        win,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top,
+      };
+      bringToFront(win);
+      e.preventDefault();
+    });
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!dragState) return;
+    const { win, offsetX, offsetY } = dragState;
+    const newLeft = e.clientX - offsetX;
+    const newTop = e.clientY - offsetY;
+    win.style.left = `${newLeft}px`;
+    win.style.top = `${Math.max(0, newTop)}px`;
+  });
+
+  window.addEventListener('mouseup', () => {
+    dragState = null;
+  });
+</script>
