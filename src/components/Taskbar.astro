@@ -2,17 +2,54 @@
 import startIcon from '../assets/iconos_xp/351.ico';
 import soundIcon from '../assets/iconos_xp/72.ico';
 import shieldIcon from '../assets/iconos_xp/360.ico';
+import pcIcon from '../assets/iconos_xp/123.ico';
+import folderIcon from '../assets/iconos_xp/160.ico';
+import mailIcon from '../assets/iconos_xp/163.ico';
+import musicIcon from '../assets/iconos_xp/306.ico';
 
 const startIconSrc = typeof startIcon === 'string' ? startIcon : startIcon.src;
 const soundIconSrc = typeof soundIcon === 'string' ? soundIcon : soundIcon.src;
 const shieldIconSrc = typeof shieldIcon === 'string' ? shieldIcon : shieldIcon.src;
+const pcIconSrc = typeof pcIcon === 'string' ? pcIcon : pcIcon.src;
+const folderIconSrc = typeof folderIcon === 'string' ? folderIcon : folderIcon.src;
+const mailIconSrc = typeof mailIcon === 'string' ? mailIcon : mailIcon.src;
+const musicIconSrc = typeof musicIcon === 'string' ? musicIcon : musicIcon.src;
 ---
 
 <div class="taskbar">
-  <button class="start-button" type="button" aria-label="Abrir menú inicio">
+  <button class="start-button" id="startButton" type="button" aria-label="Abrir menú inicio" aria-expanded="false">
     <img class="start-button-icon" src={startIconSrc} alt="" />
     <span>Inicio</span>
   </button>
+
+  <div class="start-menu" id="startMenu" hidden>
+    <div class="start-menu-header">
+      <img src={pcIconSrc} alt="" />
+      <span>Carlos Emilio Molas</span>
+    </div>
+    <div class="start-menu-body">
+      <button type="button" data-open-start="about">
+        <img src={pcIconSrc} alt="" />
+        <span>Sobre mí</span>
+      </button>
+      <button type="button" data-open-start="proyectos">
+        <img src={folderIconSrc} alt="" />
+        <span>Mis proyectos</span>
+      </button>
+      <button type="button" data-open-start="contacto">
+        <img src={mailIconSrc} alt="" />
+        <span>Contacto</span>
+      </button>
+      <button type="button" data-open-start="musica">
+        <img src={musicIconSrc} alt="" />
+        <span>Mi música</span>
+      </button>
+    </div>
+    <div class="start-menu-footer">
+      <span>Emilio XP</span>
+      <span>Sesión activa</span>
+    </div>
+  </div>
 
   <div class="taskbar-apps" id="taskbarApps"></div>
 

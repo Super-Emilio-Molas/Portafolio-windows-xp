@@ -7,6 +7,22 @@ import internetIcon from '../assets/iconos_xp/106.ico';
 import musicIcon from '../assets/iconos_xp/306.ico';
 import recycleIcon from '../assets/iconos_xp/258.ico';
 import toolsIcon from '../assets/iconos_xp/330.ico';
+import codeIcon from '../assets/iconos_xp/491.ico';
+import mobileIcon from '../assets/iconos_xp/1251.ico';
+import gitIcon from '../assets/iconos_xp/470.ico';
+import runtimeIcon from '../assets/iconos_xp/372.ico';
+import apiIcon from '../assets/iconos_xp/403.ico';
+import qaIcon from '../assets/iconos_xp/419.ico';
+import performanceIcon from '../assets/iconos_xp/1099.ico';
+import databaseIcon from '../assets/iconos_xp/1208.ico';
+import dockerIcon from '../assets/iconos_xp/775.ico';
+import designIcon from '../assets/iconos_xp/1015.ico';
+import diagramIcon from '../assets/iconos_xp/612.ico';
+import docsIcon from '../assets/iconos_xp/500.ico';
+import boardIcon from '../assets/iconos_xp/930.ico';
+import browserIcon from '../assets/iconos_xp/106.ico';
+import devBrowserIcon from '../assets/iconos_xp/629.ico';
+import newsDataFallback from '../data/news.fallback.json';
 
 const assetSrc = (asset: string | { src: string }) => (typeof asset === 'string' ? asset : asset.src);
 const pcIconSrc = assetSrc(pcIcon);
@@ -16,6 +32,84 @@ const internetIconSrc = assetSrc(internetIcon);
 const musicIconSrc = assetSrc(musicIcon);
 const recycleIconSrc = assetSrc(recycleIcon);
 const toolsIconSrc = assetSrc(toolsIcon);
+const codeIconSrc = assetSrc(codeIcon);
+const mobileIconSrc = assetSrc(mobileIcon);
+const gitIconSrc = assetSrc(gitIcon);
+const runtimeIconSrc = assetSrc(runtimeIcon);
+const apiIconSrc = assetSrc(apiIcon);
+const qaIconSrc = assetSrc(qaIcon);
+const performanceIconSrc = assetSrc(performanceIcon);
+const databaseIconSrc = assetSrc(databaseIcon);
+const dockerIconSrc = assetSrc(dockerIcon);
+const designIconSrc = assetSrc(designIcon);
+const diagramIconSrc = assetSrc(diagramIcon);
+const docsIconSrc = assetSrc(docsIcon);
+const boardIconSrc = assetSrc(boardIcon);
+const browserIconSrc = assetSrc(browserIcon);
+const devBrowserIconSrc = assetSrc(devBrowserIcon);
+const generatedNewsFiles = import.meta.glob('../data/news.generated.json', { eager: true, import: 'default' });
+const newsData = (Object.values(generatedNewsFiles)[0] ?? newsDataFallback) as typeof newsDataFallback;
+const newsItems = newsData.items.slice(0, 12);
+const newsUpdated = newsData.updatedAt.includes('T')
+  ? new Intl.DateTimeFormat('es-PY', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(newsData.updatedAt))
+  : newsData.updatedAt;
+
+const programGroups = [
+  {
+    title: 'Código y entorno',
+    tip: 'Base recomendada para editar, versionar y ejecutar proyectos modernos en entornos web, mobile y backend.',
+    items: [
+      { name: 'Visual Studio Code', use: 'Editor liviano para web, Flutter, scripts y extensiones.', url: 'https://code.visualstudio.com/download', icon: codeIconSrc },
+      { name: 'Android Studio', use: 'IDE oficial para Android, emuladores, SDK y publicación mobile.', url: 'https://developer.android.com/studio', icon: mobileIconSrc },
+      { name: 'Git', use: 'Control de versiones: ramas, commits, historial y colaboración.', url: 'https://git-scm.com/downloads', icon: gitIconSrc },
+      { name: 'GitHub Desktop', use: 'Interfaz visual para gestionar repositorios, ramas y cambios.', url: 'https://desktop.github.com/download/', icon: pcIconSrc },
+      { name: 'Node.js', use: 'Runtime para proyectos web modernos, npm, Astro, React y tooling.', url: 'https://nodejs.org/en/download', icon: runtimeIconSrc },
+      { name: 'Flutter SDK', use: 'Apps multiplataforma con Dart para Android, iOS, web y desktop.', url: 'https://docs.flutter.dev/install', icon: designIconSrc },
+      { name: 'Python', use: 'Automatización, datos, scripts, testing y prototipos rápidos.', url: 'https://www.python.org/downloads/', icon: toolsIconSrc },
+      { name: 'Java JDK', use: 'Base para Android, backends, herramientas empresariales y testing.', url: 'https://www.oracle.com/java/technologies/downloads/', icon: runtimeIconSrc },
+    ],
+  },
+  {
+    title: 'APIs, testing y QA',
+    tip: 'Herramientas orientadas a validar servicios, automatizar flujos, medir rendimiento y documentar evidencia de pruebas.',
+    items: [
+      { name: 'Postman', use: 'Cliente clásico para APIs REST, colecciones y entornos.', url: 'https://www.postman.com/downloads/', icon: apiIconSrc },
+      { name: 'Insomnia', use: 'Cliente API simple para REST, GraphQL y colecciones.', url: 'https://insomnia.rest/download', icon: apiIconSrc },
+      { name: 'Bruno', use: 'Cliente API local-first, bueno para versionar colecciones con Git.', url: 'https://www.usebruno.com/downloads', icon: gitIconSrc },
+      { name: 'Swagger Editor', use: 'Diseñar y revisar contratos OpenAPI antes de construir.', url: 'https://swagger.io/tools/swagger-editor/', icon: docsIconSrc },
+      { name: 'Apache JMeter', use: 'Pruebas de carga, rendimiento y estrés sobre servicios.', url: 'https://jmeter.apache.org/download_jmeter.cgi', icon: performanceIconSrc },
+      { name: 'Katalon Studio', use: 'Automatización de pruebas web, mobile, API y escritorio.', url: 'https://katalon.com/download', icon: qaIconSrc },
+      { name: 'Cypress', use: 'Testing end-to-end para aplicaciones web modernas.', url: 'https://www.cypress.io/app', icon: qaIconSrc },
+      { name: 'Playwright', use: 'Automatización y testing multi-browser con buen soporte moderno.', url: 'https://playwright.dev/docs/intro', icon: browserIconSrc },
+      { name: 'Selenium IDE', use: 'Grabar y reproducir pruebas simples desde el navegador.', url: 'https://www.selenium.dev/selenium-ide/', icon: qaIconSrc },
+    ],
+  },
+  {
+    title: 'Datos y bases',
+    tip: 'Opciones útiles para consultar, modelar y revisar datos con foco en consistencia, relaciones y trazabilidad.',
+    items: [
+      { name: 'DBeaver Community', use: 'Cliente universal para SQL, PostgreSQL, MySQL, SQLite y más.', url: 'https://dbeaver.io/download/', icon: databaseIconSrc },
+      { name: 'MySQL Workbench', use: 'Modelado, consultas y administración visual para MySQL.', url: 'https://dev.mysql.com/downloads/workbench/', icon: databaseIconSrc },
+      { name: 'SQLite Tools', use: 'Herramientas oficiales para trabajar con bases SQLite locales.', url: 'https://www.sqlite.org/download.html', icon: databaseIconSrc },
+      { name: 'MongoDB Compass', use: 'GUI oficial para explorar colecciones MongoDB y consultas.', url: 'https://www.mongodb.com/try/download/compass', icon: databaseIconSrc },
+      { name: 'Docker Desktop', use: 'Contenedores para bases, APIs y entornos reproducibles.', url: 'https://www.docker.com/products/docker-desktop/', icon: dockerIconSrc },
+    ],
+  },
+  {
+    title: 'Relevamiento, diseño y gestión',
+    tip: 'Recursos para convertir necesidades en procesos claros, pantallas entendibles, documentación y seguimiento de tareas.',
+    items: [
+      { name: 'Figma', use: 'Diseño UI, prototipos, handoff y validación visual.', url: 'https://www.figma.com/downloads/', icon: designIconSrc },
+      { name: 'diagrams.net', use: 'Diagramas DER, flujos, arquitectura y procesos.', url: 'https://www.diagrams.net/', icon: diagramIconSrc },
+      { name: 'Notion', use: 'Documentación, minutas, requisitos y base de conocimiento.', url: 'https://www.notion.com/desktop', icon: docsIconSrc },
+      { name: 'Obsidian', use: 'Notas locales, investigación y documentación enlazada.', url: 'https://obsidian.md/download', icon: docsIconSrc },
+      { name: 'Jira', use: 'Historias, bugs, sprints, tableros y seguimiento ágil.', url: 'https://www.atlassian.com/software/jira/free', icon: qaIconSrc },
+      { name: 'Trello', use: 'Kanban simple para ordenar tareas y etapas de trabajo.', url: 'https://trello.com/platforms', icon: boardIconSrc },
+      { name: 'Google Chrome', use: 'DevTools, inspección, red, Lighthouse y depuración web.', url: 'https://www.google.com/chrome/', icon: browserIconSrc },
+      { name: 'Firefox Developer Edition', use: 'Navegador para desarrollo, CSS, responsive y debugging.', url: 'https://www.mozilla.org/firefox/developer/', icon: devBrowserIconSrc },
+    ],
+  },
+];
 
 const desktopItems = [
   { id: 'about', label: 'Mi PC', sublabel: 'Sobre mí', icon: pcIconSrc },
@@ -42,104 +136,228 @@ const desktopItems = [
     }
   </div>
 
-  <Window id="about" title="Mi PC - Sobre mí" icon={pcIconSrc} width={560} height={370} top={62} left={154} hidden>
+  <div class="desktop-icons desktop-icons-right">
+    <button class="desktop-icon" data-open="noticias" type="button" aria-label="Abrir Noticias">
+      <img class="desktop-icon-img" src={docsIconSrc} alt="" loading="eager" />
+      <span class="desktop-icon-label">
+        Noticias
+        <small>Tech</small>
+      </span>
+    </button>
+
+    <button class="desktop-icon" data-open="programas" type="button" aria-label="Abrir Programas">
+      <img class="desktop-icon-img" src={toolsIconSrc} alt="" loading="eager" />
+      <span class="desktop-icon-label">
+        Programas
+        <small>Recursos</small>
+      </span>
+    </button>
+  </div>
+
+  <Window id="about" title="Mi PC - Sobre mí" icon={pcIconSrc} width={640} height={470} top={62} left={154} hidden>
     <section class="xp-intro">
       <img src={pcIconSrc} alt="" />
       <div>
-        <h2>Hola, soy Emilio</h2>
-        <p>Desarrollador web construyendo experiencias con una mezcla de nostalgia, detalle visual y código limpio.</p>
+        <h2>Carlos Emilio Molas Martínez</h2>
+        <p>Software Engineer, QA y Analista Funcional. Vengo de combinar soporte técnico, operación SAP, testing y desarrollo de productos propios; por eso no miro el software solo como código, sino como una solución que tiene que funcionar para usuarios, negocio y mantenimiento.</p>
       </div>
     </section>
+    <p>
+      Me interesa construir productos que lleguen a producción y sigan creciendo: aplicaciones Android, paneles administrativos,
+      integraciones con servicios externos y flujos de trabajo que se puedan medir, probar y mejorar. En proyectos como Ja'u,
+      Agendána y Ñande Presupuesto trabajé desde la idea inicial hasta la publicación, el seguimiento y la corrección de incidencias.
+    </p>
     <div class="xp-info-grid">
       <article>
-        <strong>Sistema</strong>
-        <span>Astro + componentes limpios</span>
+        <strong>Mobile</strong>
+        <span>Flutter, Dart, Android, Java, SQLite y Android Studio</span>
       </article>
       <article>
-        <strong>Interfaz</strong>
-        <span>Emilio XP, fondo clásico y ventanas antiguas</span>
+        <strong>Web & Backend</strong>
+        <span>Astro, React, TypeScript, Firebase, NoSQL, MySQL y APIs REST</span>
       </article>
       <article>
-        <strong>Estado</strong>
-        <span>Disponible para nuevos proyectos</span>
+        <strong>QA & Producto</strong>
+        <span>Postman, Azure DevOps, Scrum, SQL/PL-SQL y análisis funcional</span>
       </article>
     </div>
   </Window>
 
-  <Window id="proyectos" title="C:\Mis Proyectos" icon={folderIconSrc} width={650} height={430} top={88} left={218} hidden>
+  <Window id="proyectos" title="C:\Mis Proyectos" icon={folderIconSrc} width={690} height={470} top={88} left={218} hidden>
     <h2>Proyectos</h2>
     <div class="project-list">
       <article>
         <img src={toolsIconSrc} alt="" />
         <div>
-          <strong>Portafolio Emilio XP</strong>
-          <p>Interfaz tipo escritorio con ventanas, barra de tareas, iconos y fondo local.</p>
+          <strong>Ja'u</strong>
+          <p>Plataforma propia para gestión de pedidos y operaciones comerciales, llevada de la idea a producción.</p>
         </div>
       </article>
       <article>
         <img src={folderIconSrc} alt="" />
         <div>
-          <strong>Proyecto destacado</strong>
-          <p>Espacio preparado para enlazar tu mejor trabajo, demo y repositorio.</p>
+          <strong>Agendána</strong>
+          <p>Producto propio orientado a reservas y gestión operativa, con mantenimiento y mejora continua.</p>
         </div>
       </article>
       <article>
         <img src={internetIconSrc} alt="" />
         <div>
-          <strong>Experiencias web</strong>
-          <p>Landing pages, apps interactivas y sitios rápidos con foco en UI.</p>
+          <strong>Ñande Presupuesto</strong>
+          <p>Aplicación Android publicada y válida en Google Play, creada para llevar presupuestos de forma práctica y ordenada.</p>
+        </div>
+      </article>
+      <article>
+        <img src={pcIconSrc} alt="" />
+        <div>
+          <strong>Portafolio Emilio XP</strong>
+          <p>Este sitio está hecho con Astro, CSS puro y JavaScript vanilla, cuidando performance, estética y experiencia interactiva.</p>
         </div>
       </article>
     </div>
   </Window>
 
-  <Window id="contacto" title="Correo - Contacto" icon={mailIconSrc} width={500} height={335} top={114} left={282} hidden>
+  <Window id="contacto" title="Correo - Contacto" icon={mailIconSrc} width={540} height={380} top={114} left={282} hidden>
     <h2>Contacto</h2>
     <div class="contact-list">
-      <a href="mailto:tunombre@ejemplo.com">tunombre@ejemplo.com</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="mailto:emiliomolaspy@gmail.com">emiliomolaspy@gmail.com</a>
+      <span>Capiatá, Paraguay</span>
+      <span>Español y guaraní avanzado; inglés básico en mejora</span>
     </div>
-    <p class="xp-note">Actualiza estos enlaces con tus perfiles reales cuando quieras dejarlo listo para publicar.</p>
+    <p class="xp-note">Disponible para proyectos donde haga falta alguien que pueda entender el problema, bajarlo a requerimientos, construir la solución y validarla con criterio técnico.</p>
   </Window>
 
-  <Window id="internet" title="Navegador - Internet" icon={internetIconSrc} width={540} height={360} top={78} left={330} hidden>
-    <h2>Internet</h2>
-    <p>Accesos rápidos a redes, demos y recursos personales.</p>
+  <Window id="noticias" title="Navegador - Noticias Tech" icon={docsIconSrc} width={680} height={480} top={96} left={250} hidden>
+    <h2>Noticias Tech</h2>
+    <p>
+      Selección de titulares sobre tecnología, desarrollo, productos digitales e innovación. Una ventana rápida para seguir tendencias
+      del sector sin salir del escritorio.
+    </p>
+    <p class="xp-note">Última actualización: {newsUpdated}</p>
+    <div class="news-list">
+      {
+        newsItems.map((item) => (
+          <article class="news-item">
+            <div>
+              <strong>{item.title}</strong>
+              <span>{item.source}{item.publishedAt ? ` · ${item.publishedAt}` : ''}</span>
+              {item.summary && <p>{item.summary}</p>}
+            </div>
+            <a href={item.url} target="_blank" rel="noreferrer">Leer</a>
+          </article>
+        ))
+      }
+    </div>
+  </Window>
+
+  <Window id="internet" title="Navegador - Trayectoria" icon={internetIconSrc} width={640} height={470} top={78} left={330} hidden>
+    <h2>Trayectoria y formación</h2>
+    <p>Me gusta resolver problemas de negocio con software que no se queda en demo: apps publicadas, paneles útiles, integraciones reales y procesos que se pueden mantener.</p>
     <div class="browser-bar">
-      <span>Dirección</span>
-      <code>https://tu-portafolio.dev</code>
+      <span>Enfoque</span>
+      <code>Producto + Mobile + Web + QA</code>
     </div>
-    <div class="link-grid">
-      <a href="https://github.com/" target="_blank" rel="noreferrer">Repositorio</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">Perfil profesional</a>
-      <a href="mailto:tunombre@ejemplo.com">Enviar email</a>
+    <div class="project-list">
+      <article>
+        <img src={folderIconSrc} alt="" />
+        <div>
+          <strong>Ingeniería en Informática</strong>
+          <p>Universidad Columbia del Paraguay. Carrera en curso, con tesis pendiente.</p>
+        </div>
+      </article>
+      <article>
+        <img src={toolsIconSrc} alt="" />
+        <div>
+          <strong>Técnico en Informática</strong>
+          <p>Centro Educativo Integral de las Américas, mejor egresado 2019.</p>
+        </div>
+      </article>
+      <article>
+        <img src={internetIconSrc} alt="" />
+        <div>
+          <strong>Experiencia previa</strong>
+          <p>Operativo SAP S/4HANA en Tecnoedil S.A.; técnico informático independiente; pasantía técnica en ANDE.</p>
+        </div>
+      </article>
+      <article>
+        <img src={pcIconSrc} alt="" />
+        <div>
+          <strong>Cursos y certificaciones</strong>
+          <p>Cisco Networking Academy, SNPP, mantenimiento de equipos, redes, hardware, ciberseguridad, Photoshop y community management.</p>
+        </div>
+      </article>
     </div>
   </Window>
 
-  <Window id="musica" title="Reproductor - Mi música" icon={musicIconSrc} width={430} height={288} top={128} left={196} hidden>
-    <h2>Mi música</h2>
-    <div class="winamp-panel">
-      <span>PLAY</span>
-      <strong>coding-session.mp3</strong>
-      <meter min="0" max="100" value="74">74%</meter>
+  <Window id="musica" title="Reproductor - Mi música" icon={musicIconSrc} width={500} height={360} top={128} left={196} hidden>
+    <h2>Mis gustos musicales</h2>
+    <p>
+      La música también puede ser un punto de conexión: dice bastante sobre el ritmo con el que uno trabaja, se concentra,
+      descansa y vuelve a intentar. Esta playlist es una pequeña puerta a ese lado más personal del escritorio, el que acompaña
+      sesiones largas de código, pruebas, ideas nuevas y esos momentos donde ordenar la cabeza también forma parte del proceso.
+    </p>
+    <div class="link-grid">
+      <a href="https://music.youtube.com/playlist?list=PLoAsgE3K09wuSyW1tc5X0nfWK7GoGFKi0&si=9KYjZulDxBsoWlMN" target="_blank" rel="noreferrer">Abrir playlist en YouTube Music</a>
     </div>
-    <p>Un pequeño rincón para gustos, playlists o cualquier detalle personal que quieras sumar al portafolio.</p>
   </Window>
 
   <Window id="papelera" title="Papelera de reciclaje" icon={recycleIconSrc} width={480} height={320} top={144} left={258} hidden>
     <h2>Cosas que aprendí por el camino</h2>
     <ul class="xp-list">
-      <li>Prototipos que enseñaron decisiones de producto.</li>
-      <li>Detalles visuales que hacen que una interfaz se sienta viva.</li>
-      <li>Ideas viejas recicladas en componentes nuevos.</li>
+      <li>QA funcional, casos de prueba, validación de datos y testing de APIs con Postman.</li>
+      <li>Relevamiento de requerimientos, historias de usuario, DER y casos de uso.</li>
+      <li>Soporte IT, reparación de hardware/software y optimización de rendimiento.</li>
     </ul>
   </Window>
+
+  <Window id="programas" title="C:\Programas recomendados" icon={toolsIconSrc} width={760} height={540} top={72} left={360} hidden>
+    <h2>Herramientas recomendadas</h2>
+    <p>
+      Una caja de herramientas para desarrollo, QA, análisis funcional, datos y documentación técnica. La selección prioriza
+      opciones conocidas, útiles para aprender, prototipar, validar y llevar proyectos a producción.
+    </p>
+    <div class="program-groups">
+      {
+        programGroups.map((group) => (
+          <section class="program-group">
+            <h3>{group.title}</h3>
+            <p>{group.tip}</p>
+            <div class="program-list">
+              {group.items.map((program) => (
+                <a href={program.url} target="_blank" rel="noreferrer" class="program-item">
+                  <img src={program.icon} alt="" />
+                  <span>
+                    <strong>{program.name}</strong>
+                    <small>{program.use}</small>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </Window>
+
+  <div class="selection-box" id="selectionBox" hidden></div>
+  <div class="context-menu" id="contextMenu" hidden>
+    <button type="button" data-context-action="open">Abrir</button>
+    <button type="button" data-context-action="refresh">Actualizar</button>
+    <button type="button" data-context-action="select-all">Seleccionar todo</button>
+    <button type="button" data-context-action="properties">Propiedades</button>
+  </div>
 </div>
 
 <script>
   // ---- Manejo de ventanas ----
+  const desktop = document.querySelector<HTMLElement>('.desktop');
   const windows = document.querySelectorAll<HTMLElement>('.xp-window');
+  const desktopIcons = document.querySelectorAll<HTMLElement>('.desktop-icon');
+  const selectionBox = document.getElementById('selectionBox');
+  const contextMenu = document.getElementById('contextMenu');
+  const startButton = document.getElementById('startButton') as HTMLButtonElement | null;
+  const startMenu = document.getElementById('startMenu');
+  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
   function getWindow(id: string) {
     return document.getElementById(`window-${id}`);
@@ -201,12 +419,31 @@ const desktopItems = [
     setActiveTaskbarButton(win.dataset.windowId ?? '');
   }
 
+  function getMaxWindowBounds(win: HTMLElement) {
+    return {
+      left: Math.max(0, window.innerWidth - win.offsetWidth),
+      top: Math.max(0, window.innerHeight - win.offsetHeight - 32),
+    };
+  }
+
+  function clampWindow(win: HTMLElement) {
+    if (win.dataset.maximized === 'true') return;
+    const bounds = getMaxWindowBounds(win);
+    const left = Math.min(Math.max(0, parseFloat(win.style.left) || 0), bounds.left);
+    const top = Math.min(Math.max(0, parseFloat(win.style.top) || 0), bounds.top);
+    win.style.left = `${left}px`;
+    win.style.top = `${top}px`;
+  }
+
   function openWindow(id: string) {
     const win = getWindow(id);
     if (!win) return;
     win.hidden = false;
     ensureTaskbarButton(win);
+    clampWindow(win);
     bringToFront(win);
+    hideStartMenu();
+    hideContextMenu();
   }
 
   function closeWindow(id: string) {
@@ -216,23 +453,123 @@ const desktopItems = [
     removeTaskbarButton(id);
   }
 
-  // Abrir al hacer click en un icono del escritorio
-  document.querySelectorAll<HTMLElement>('.desktop-icon').forEach((icon) => {
+  function hideContextMenu() {
+    if (contextMenu) contextMenu.hidden = true;
+  }
+
+  function showContextMenu(x: number, y: number, targetId = '') {
+    if (!contextMenu || !desktop) return;
+    contextMenu.dataset.target = targetId;
+    contextMenu.hidden = false;
+    const desktopRect = desktop.getBoundingClientRect();
+    const menuRect = contextMenu.getBoundingClientRect();
+    const left = Math.min(Math.max(0, x - desktopRect.left), desktopRect.width - menuRect.width - 4);
+    const top = Math.min(Math.max(0, y - desktopRect.top), desktopRect.height - menuRect.height - 4);
+    contextMenu.style.left = `${left}px`;
+    contextMenu.style.top = `${top}px`;
+  }
+
+  function hideStartMenu() {
+    if (!startMenu || !startButton) return;
+    startMenu.hidden = true;
+    startButton.classList.remove('active');
+    startButton.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleStartMenu() {
+    if (!startMenu || !startButton) return;
+    const nextHidden = !startMenu.hidden;
+    startMenu.hidden = nextHidden;
+    startButton.classList.toggle('active', !nextHidden);
+    startButton.setAttribute('aria-expanded', String(!nextHidden));
+    hideContextMenu();
+  }
+
+  function clearIconSelection() {
+    desktopIcons.forEach((icon) => icon.classList.remove('selected'));
+  }
+
+  function selectIcon(icon: HTMLElement, append = false) {
+    if (!append) clearIconSelection();
+    icon.classList.add('selected');
+  }
+
+  function selectedIconIds() {
+    return [...desktopIcons]
+      .filter((icon) => icon.classList.contains('selected'))
+      .map((icon) => icon.dataset.open)
+      .filter(Boolean) as string[];
+  }
+
+  // Abrir al hacer doble click en escritorio, o toque directo en pantallas táctiles.
+  desktopIcons.forEach((icon) => {
     icon.addEventListener('dblclick', () => {
       const id = icon.dataset.open;
       if (id) openWindow(id);
     });
-    // Un solo click selecciona
     icon.addEventListener('click', (e) => {
       e.stopPropagation();
-      document.querySelectorAll('.desktop-icon').forEach((i) => i.classList.remove('selected'));
-      icon.classList.add('selected');
+      selectIcon(icon, e.ctrlKey || e.metaKey);
+      hideContextMenu();
+      hideStartMenu();
+      if (coarsePointer) {
+        const id = icon.dataset.open;
+        if (id) openWindow(id);
+      }
+    });
+    icon.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!icon.classList.contains('selected')) selectIcon(icon);
+      showContextMenu(e.clientX, e.clientY, icon.dataset.open ?? '');
     });
   });
 
-  // Click en el fondo deselecciona
-  document.querySelector('.desktop')?.addEventListener('click', () => {
-    document.querySelectorAll('.desktop-icon').forEach((i) => i.classList.remove('selected'));
+  startButton?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleStartMenu();
+  });
+
+  startMenu?.querySelectorAll<HTMLButtonElement>('[data-open-start]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.openStart;
+      if (id) openWindow(id);
+    });
+  });
+
+  contextMenu?.querySelectorAll<HTMLButtonElement>('[data-context-action]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.contextAction;
+      const targetId = contextMenu.dataset.target;
+      if (action === 'open') {
+        const ids = targetId ? [targetId] : selectedIconIds();
+        ids.forEach((id) => openWindow(id));
+      }
+      if (action === 'refresh') {
+        clearIconSelection();
+      }
+      if (action === 'select-all') {
+        desktopIcons.forEach((icon) => icon.classList.add('selected'));
+      }
+      if (action === 'properties') {
+        openWindow('about');
+      }
+      hideContextMenu();
+    });
+  });
+
+  // Click en el fondo deselecciona.
+  desktop?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('.context-menu, .start-menu')) return;
+    clearIconSelection();
+    hideContextMenu();
+    hideStartMenu();
+  });
+
+  desktop?.addEventListener('contextmenu', (e) => {
+    if ((e.target as HTMLElement).closest('.xp-window, .desktop-icon, .context-menu, .start-menu')) return;
+    e.preventDefault();
+    showContextMenu(e.clientX, e.clientY);
   });
 
   // Botones de cada ventana (cerrar/minimizar/maximizar)
@@ -253,15 +590,16 @@ const desktopItems = [
           win.style.top = win.dataset.restoreTop ?? '';
           win.style.left = win.dataset.restoreLeft ?? '';
           win.dataset.maximized = 'false';
+          clampWindow(win);
         } else {
           win.dataset.restoreWidth = win.style.width;
           win.dataset.restoreHeight = win.style.height;
           win.dataset.restoreTop = win.style.top;
           win.dataset.restoreLeft = win.style.left;
-          win.style.width = 'min(92vw, 860px)';
-          win.style.height = 'calc(100vh - 74px)';
-          win.style.top = '14px';
-          win.style.left = '4vw';
+          win.style.width = 'calc(100vw - 16px)';
+          win.style.height = 'calc(100vh - var(--taskbar-height) - 16px)';
+          win.style.top = '8px';
+          win.style.left = '8px';
           win.dataset.maximized = 'true';
         }
       }
@@ -275,11 +613,24 @@ const desktopItems = [
 
   // ---- Arrastrar ventanas ----
   let dragState: { win: HTMLElement; offsetX: number; offsetY: number } | null = null;
+  let resizeState: {
+    win: HTMLElement;
+    startX: number;
+    startY: number;
+    startWidth: number;
+    startHeight: number;
+  } | null = null;
+  let selectState: {
+    startX: number;
+    startY: number;
+    active: boolean;
+  } | null = null;
 
   document.querySelectorAll<HTMLElement>('[data-drag-handle]').forEach((handle) => {
-    handle.addEventListener('mousedown', (e) => {
+    function startDrag(e: MouseEvent | PointerEvent) {
       const win = handle.closest<HTMLElement>('.xp-window');
       if (!win) return;
+      if (win.dataset.maximized === 'true') return;
       const rect = win.getBoundingClientRect();
       dragState = {
         win,
@@ -288,22 +639,127 @@ const desktopItems = [
       };
       bringToFront(win);
       e.preventDefault();
-    });
+    }
+
+    handle.addEventListener('mousedown', startDrag);
+    handle.addEventListener('pointerdown', startDrag);
   });
 
-  window.addEventListener('mousemove', (e) => {
-    if (!dragState) return;
-    const { win, offsetX, offsetY } = dragState;
-    if (win.dataset.maximized === 'true') return;
-    const maxLeft = window.innerWidth - win.offsetWidth;
-    const maxTop = window.innerHeight - win.offsetHeight - 32;
-    const newLeft = Math.min(Math.max(0, e.clientX - offsetX), Math.max(0, maxLeft));
-    const newTop = e.clientY - offsetY;
-    win.style.left = `${newLeft}px`;
-    win.style.top = `${Math.min(Math.max(0, newTop), Math.max(0, maxTop))}px`;
+  document.querySelectorAll<HTMLElement>('[data-resize-handle]').forEach((handle) => {
+    function startResize(e: MouseEvent | PointerEvent) {
+      const win = handle.closest<HTMLElement>('.xp-window');
+      if (!win || win.dataset.maximized === 'true') return;
+      resizeState = {
+        win,
+        startX: e.clientX,
+        startY: e.clientY,
+        startWidth: win.offsetWidth,
+        startHeight: win.offsetHeight,
+      };
+      bringToFront(win);
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    handle.addEventListener('mousedown', startResize);
+    handle.addEventListener('pointerdown', startResize);
   });
 
-  window.addEventListener('mouseup', () => {
+  function startDesktopSelection(e: MouseEvent | PointerEvent) {
+    if (e.button !== 0) return;
+    if (!desktop || selectState || dragState || resizeState) return;
+    const target = e.target as HTMLElement;
+    if (target.closest('.desktop-icon, .xp-window, .context-menu, .start-menu')) return;
+    const rect = desktop.getBoundingClientRect();
+    const withinDesktop =
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
+    if (!withinDesktop) return;
+    selectState = {
+      startX: e.clientX - rect.left,
+      startY: e.clientY - rect.top,
+      active: false,
+    };
+    hideContextMenu();
+    hideStartMenu();
+  }
+
+  desktop?.addEventListener('mousedown', startDesktopSelection);
+  desktop?.addEventListener('pointerdown', startDesktopSelection);
+  document.addEventListener('mousedown', startDesktopSelection, true);
+  document.addEventListener('pointerdown', startDesktopSelection, true);
+
+  function movePointer(e: MouseEvent | PointerEvent) {
+    if (dragState) {
+      const { win, offsetX, offsetY } = dragState;
+      if (win.dataset.maximized === 'true') return;
+      const bounds = getMaxWindowBounds(win);
+      const newLeft = Math.min(Math.max(0, e.clientX - offsetX), bounds.left);
+      const newTop = e.clientY - offsetY;
+      win.style.left = `${newLeft}px`;
+      win.style.top = `${Math.min(Math.max(0, newTop), bounds.top)}px`;
+      return;
+    }
+
+    if (resizeState) {
+      const { win, startX, startY, startWidth, startHeight } = resizeState;
+      const maxWidth = window.innerWidth - (parseFloat(win.style.left) || 0) - 8;
+      const maxHeight = window.innerHeight - (parseFloat(win.style.top) || 0) - 8 - 34;
+      const width = Math.min(Math.max(320, startWidth + e.clientX - startX), maxWidth);
+      const height = Math.min(Math.max(200, startHeight + e.clientY - startY), maxHeight);
+      win.style.width = `${width}px`;
+      win.style.height = `${height}px`;
+      return;
+    }
+
+    if (selectState && desktop && selectionBox) {
+      const rect = desktop.getBoundingClientRect();
+      const currentX = e.clientX - rect.left;
+      const currentY = e.clientY - rect.top;
+      const left = Math.min(selectState.startX, currentX);
+      const top = Math.min(selectState.startY, currentY);
+      const width = Math.abs(currentX - selectState.startX);
+      const height = Math.abs(currentY - selectState.startY);
+
+      if (width > 4 || height > 4) {
+        selectState.active = true;
+        selectionBox.hidden = false;
+        selectionBox.style.left = `${left}px`;
+        selectionBox.style.top = `${top}px`;
+        selectionBox.style.width = `${width}px`;
+        selectionBox.style.height = `${height}px`;
+
+        const selectionRect = selectionBox.getBoundingClientRect();
+        desktopIcons.forEach((icon) => {
+          const iconRect = icon.getBoundingClientRect();
+          const intersects =
+            selectionRect.left < iconRect.right &&
+            selectionRect.right > iconRect.left &&
+            selectionRect.top < iconRect.bottom &&
+            selectionRect.bottom > iconRect.top;
+          icon.classList.toggle('selected', intersects);
+        });
+      }
+    }
+  }
+
+  window.addEventListener('mousemove', movePointer);
+  window.addEventListener('pointermove', movePointer);
+
+  function endPointer() {
     dragState = null;
+    resizeState = null;
+    if (selectionBox) selectionBox.hidden = true;
+    selectState = null;
+  }
+
+  window.addEventListener('mouseup', endPointer);
+  window.addEventListener('pointerup', endPointer);
+  window.addEventListener('pointercancel', endPointer);
+
+  window.addEventListener('resize', () => {
+    windows.forEach((win) => clampWindow(win));
   });
 </script>

@@ -7,7 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "news": "node scripts/fetch-news.mjs",
     "build": "astro build",
+    "build:news": "npm run news && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

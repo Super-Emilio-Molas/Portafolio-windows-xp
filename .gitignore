@@ -4,6 +4,9 @@ dist/
 # generated types
 .astro/
 
+# generated during local/CI builds
+src/data/news.generated.json
+
 # dependencies
 node_modules/
 
