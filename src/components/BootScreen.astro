@@ -1,26 +1,47 @@
 ---
-// Pantalla de arranque estilo Windows XP
+// Pantalla de arranque estilo Emilio XP
+const introMusicFiles = import.meta.glob('../assets/music/musicaintroxp.{mp3,wav,ogg,m4a}', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+});
+const introMusicSrc = Object.values(introMusicFiles)[0] as string | undefined;
 ---
 
 <div class="boot-screen" id="bootScreen">
-  <div class="boot-logo">
-    Microsoft<sup style="font-size:14px;">®</sup>
-    <span>Windows</span><small>xp</small>
+  <div class="boot-logo" aria-label="Emilio XP">
+    <span class="boot-brand">Emilio</span>
+    <span class="boot-xp">xp</span>
+    <small>professional</small>
   </div>
 
   <div class="boot-bar">
-    <div class="boot-bar-inner"></div>
+    <div class="boot-bar-blocks" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
   <div class="boot-footer">
-    <strong>Microsoft Corporation</strong><br />
-    Copyright © Microsoft Corporation
+    <strong>Emilio XP</strong><br />
+    Portfolio operating system
   </div>
+
+  {introMusicSrc && <audio id="introMusic" src={introMusicSrc} preload="auto"></audio>}
 </div>
 
 <script>
-  // Oculta la pantalla de arranque al terminar y muestra el escritorio
+  // Oculta la pantalla de arranque al terminar y muestra el escritorio.
   window.addEventListener('load', () => {
+    const introMusic = document.getElementById('introMusic') as HTMLAudioElement | null;
+    if (introMusic) {
+      introMusic.volume = 0.35;
+      introMusic.play().catch(() => {
+        // Algunos navegadores bloquean audio sin interacción previa.
+      });
+    }
+
     setTimeout(() => {
       const boot = document.getElementById('bootScreen');
       const desktop = document.querySelector('.desktop') as HTMLElement | null;

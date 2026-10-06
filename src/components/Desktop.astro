@@ -8,13 +8,22 @@ import musicIcon from '../assets/iconos_xp/306.ico';
 import recycleIcon from '../assets/iconos_xp/258.ico';
 import toolsIcon from '../assets/iconos_xp/330.ico';
 
+const assetSrc = (asset: string | { src: string }) => (typeof asset === 'string' ? asset : asset.src);
+const pcIconSrc = assetSrc(pcIcon);
+const folderIconSrc = assetSrc(folderIcon);
+const mailIconSrc = assetSrc(mailIcon);
+const internetIconSrc = assetSrc(internetIcon);
+const musicIconSrc = assetSrc(musicIcon);
+const recycleIconSrc = assetSrc(recycleIcon);
+const toolsIconSrc = assetSrc(toolsIcon);
+
 const desktopItems = [
-  { id: 'about', label: 'Mi PC', sublabel: 'Sobre mi', icon: pcIcon.src },
-  { id: 'proyectos', label: 'Mis proyectos', icon: folderIcon.src },
-  { id: 'contacto', label: 'Contacto', icon: mailIcon.src },
-  { id: 'internet', label: 'Internet', icon: internetIcon.src },
-  { id: 'musica', label: 'Mi musica', icon: musicIcon.src },
-  { id: 'papelera', label: 'Papelera', icon: recycleIcon.src },
+  { id: 'about', label: 'Mi PC', sublabel: 'Sobre mí', icon: pcIconSrc },
+  { id: 'proyectos', label: 'Mis proyectos', icon: folderIconSrc },
+  { id: 'contacto', label: 'Contacto', icon: mailIconSrc },
+  { id: 'internet', label: 'Internet', icon: internetIconSrc },
+  { id: 'musica', label: 'Mi música', icon: musicIconSrc },
+  { id: 'papelera', label: 'Papelera', icon: recycleIconSrc },
 ];
 ---
 
@@ -33,12 +42,12 @@ const desktopItems = [
     }
   </div>
 
-  <Window id="about" title="Mi PC - Sobre mi" icon={pcIcon.src} width={560} height={370} top={62} left={154} hidden>
+  <Window id="about" title="Mi PC - Sobre mí" icon={pcIconSrc} width={560} height={370} top={62} left={154} hidden>
     <section class="xp-intro">
-      <img src={pcIcon.src} alt="" />
+      <img src={pcIconSrc} alt="" />
       <div>
         <h2>Hola, soy Emilio</h2>
-        <p>Desarrollador web construyendo experiencias con una mezcla de nostalgia, detalle visual y codigo limpio.</p>
+        <p>Desarrollador web construyendo experiencias con una mezcla de nostalgia, detalle visual y código limpio.</p>
       </div>
     </section>
     <div class="xp-info-grid">
@@ -48,7 +57,7 @@ const desktopItems = [
       </article>
       <article>
         <strong>Interfaz</strong>
-        <span>Windows XP, Bliss y ventanas clasicas</span>
+        <span>Emilio XP, fondo clásico y ventanas antiguas</span>
       </article>
       <article>
         <strong>Estado</strong>
@@ -57,34 +66,34 @@ const desktopItems = [
     </div>
   </Window>
 
-  <Window id="proyectos" title="C:\Mis Proyectos" icon={folderIcon.src} width={650} height={430} top={88} left={218} hidden>
+  <Window id="proyectos" title="C:\Mis Proyectos" icon={folderIconSrc} width={650} height={430} top={88} left={218} hidden>
     <h2>Proyectos</h2>
     <div class="project-list">
       <article>
-        <img src={toolsIcon.src} alt="" />
+        <img src={toolsIconSrc} alt="" />
         <div>
-          <strong>Portafolio XP</strong>
-          <p>Interfaz tipo escritorio con ventanas, barra de tareas, iconos y fondo Bliss local.</p>
+          <strong>Portafolio Emilio XP</strong>
+          <p>Interfaz tipo escritorio con ventanas, barra de tareas, iconos y fondo local.</p>
         </div>
       </article>
       <article>
-        <img src={folderIcon.src} alt="" />
+        <img src={folderIconSrc} alt="" />
         <div>
           <strong>Proyecto destacado</strong>
           <p>Espacio preparado para enlazar tu mejor trabajo, demo y repositorio.</p>
         </div>
       </article>
       <article>
-        <img src={internetIcon.src} alt="" />
+        <img src={internetIconSrc} alt="" />
         <div>
           <strong>Experiencias web</strong>
-          <p>Landing pages, apps interactivas y sitios rapidos con foco en UI.</p>
+          <p>Landing pages, apps interactivas y sitios rápidos con foco en UI.</p>
         </div>
       </article>
     </div>
   </Window>
 
-  <Window id="contacto" title="Outlook Express - Contacto" icon={mailIcon.src} width={500} height={335} top={114} left={282} hidden>
+  <Window id="contacto" title="Correo - Contacto" icon={mailIconSrc} width={500} height={335} top={114} left={282} hidden>
     <h2>Contacto</h2>
     <div class="contact-list">
       <a href="mailto:tunombre@ejemplo.com">tunombre@ejemplo.com</a>
@@ -94,11 +103,11 @@ const desktopItems = [
     <p class="xp-note">Actualiza estos enlaces con tus perfiles reales cuando quieras dejarlo listo para publicar.</p>
   </Window>
 
-  <Window id="internet" title="Internet Explorer" icon={internetIcon.src} width={540} height={360} top={78} left={330} hidden>
+  <Window id="internet" title="Navegador - Internet" icon={internetIconSrc} width={540} height={360} top={78} left={330} hidden>
     <h2>Internet</h2>
-    <p>Accesos rapidos a redes, demos y recursos personales.</p>
+    <p>Accesos rápidos a redes, demos y recursos personales.</p>
     <div class="browser-bar">
-      <span>Direccion</span>
+      <span>Dirección</span>
       <code>https://tu-portafolio.dev</code>
     </div>
     <div class="link-grid">
@@ -108,20 +117,20 @@ const desktopItems = [
     </div>
   </Window>
 
-  <Window id="musica" title="Winamp - Mi musica" icon={musicIcon.src} width={430} height={288} top={128} left={196} hidden>
-    <h2>Mi musica</h2>
+  <Window id="musica" title="Reproductor - Mi música" icon={musicIconSrc} width={430} height={288} top={128} left={196} hidden>
+    <h2>Mi música</h2>
     <div class="winamp-panel">
       <span>PLAY</span>
       <strong>coding-session.mp3</strong>
       <meter min="0" max="100" value="74">74%</meter>
     </div>
-    <p>Un pequeno rincon para gustos, playlists o cualquier detalle personal que quieras sumar al portafolio.</p>
+    <p>Un pequeño rincón para gustos, playlists o cualquier detalle personal que quieras sumar al portafolio.</p>
   </Window>
 
-  <Window id="papelera" title="Papelera de reciclaje" icon={recycleIcon.src} width={480} height={320} top={144} left={258} hidden>
-    <h2>Cosas que aprendi por el camino</h2>
+  <Window id="papelera" title="Papelera de reciclaje" icon={recycleIconSrc} width={480} height={320} top={144} left={258} hidden>
+    <h2>Cosas que aprendí por el camino</h2>
     <ul class="xp-list">
-      <li>Prototipos que ensenaron decisiones de producto.</li>
+      <li>Prototipos que enseñaron decisiones de producto.</li>
       <li>Detalles visuales que hacen que una interfaz se sienta viva.</li>
       <li>Ideas viejas recicladas en componentes nuevos.</li>
     </ul>

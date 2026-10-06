@@ -56,29 +56,41 @@ a {
 
 .boot-logo {
   font-family: 'Trebuchet MS', var(--xp-font);
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 300;
-  letter-spacing: -1px;
-  margin-bottom: 8px;
+  letter-spacing: 0;
+  margin-bottom: 12px;
   color: #fff;
+  line-height: 0.92;
 }
 
-.boot-logo span {
+.boot-brand {
+  color: #fff;
+  font-weight: 300;
+}
+
+.boot-xp {
+  display: inline-block;
+  margin-left: 8px;
   color: #f5a623;
+  font-size: 0.72em;
   font-weight: bold;
+  font-style: italic;
+  transform: translateY(5px);
 }
 
 .boot-logo small {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   text-align: right;
-  margin-top: -6px;
+  margin-top: 2px;
   color: #ccc;
+  text-transform: uppercase;
 }
 
 .boot-bar {
-  width: 200px;
-  height: 16px;
+  width: 184px;
+  height: 18px;
   border: 1px solid #555;
   border-radius: 3px;
   background: #111;
@@ -88,40 +100,27 @@ a {
   padding: 2px;
 }
 
-.boot-bar-inner {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to bottom, #3a93ff, #0058e6);
-  border-radius: 2px;
-  animation: bootProgress 3.5s ease-in-out forwards;
-}
-
 .boot-bar-blocks {
   position: absolute;
   top: 2px;
-  left: 2px;
+  left: -54px;
   height: calc(100% - 4px);
-  width: 0;
+  width: 54px;
   display: flex;
   gap: 2px;
-  animation: bootBlocks 3.5s ease-in-out forwards;
+  animation: bootBlocks 1.05s linear infinite;
 }
 
 .boot-bar-blocks span {
-  width: 10px;
+  width: 16px;
   height: 100%;
   background: linear-gradient(to bottom, #3a93ff, #0058e6);
   border-radius: 1px;
 }
 
-@keyframes bootProgress {
-  0%   { width: 0; }
-  100% { width: 100%; }
-}
-
 @keyframes bootBlocks {
-  0%   { width: 0; }
-  100% { width: 100%; }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(238px); }
 }
 
 .boot-footer {

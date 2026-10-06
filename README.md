@@ -1,11 +1,11 @@
-# Portafolio Windows XP
+# Portafolio Emilio XP
 
-Portafolio personal construido con Astro que recrea la experiencia visual de Windows XP. Incluye pantalla de arranque, escritorio con iconos, ventanas arrastrables y barra de tareas inferior. Cada aplicación del escritorio corresponde a una sección del portafolio: Sobre mí, Proyectos, Contacto, entre otras.
+Portafolio personal construido con Astro que recrea la experiencia visual de un escritorio clásico estilo XP. Incluye pantalla de arranque, escritorio con iconos, ventanas arrastrables y barra de tareas inferior. Cada aplicación del escritorio corresponde a una sección del portafolio: Sobre mí, Proyectos, Contacto, entre otras.
 
 ## Stack
 
 - Astro como framework principal
-- CSS puro para la estética Windows XP
+- CSS puro para la estética Emilio XP
 - JavaScript vanilla para la interacción de ventanas
 - Pendiente de despliegue
 

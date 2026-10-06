@@ -2,19 +2,23 @@
 import startIcon from '../assets/iconos_xp/351.ico';
 import soundIcon from '../assets/iconos_xp/72.ico';
 import shieldIcon from '../assets/iconos_xp/360.ico';
+
+const startIconSrc = typeof startIcon === 'string' ? startIcon : startIcon.src;
+const soundIconSrc = typeof soundIcon === 'string' ? soundIcon : soundIcon.src;
+const shieldIconSrc = typeof shieldIcon === 'string' ? shieldIcon : shieldIcon.src;
 ---
 
 <div class="taskbar">
-  <button class="start-button" type="button" aria-label="Abrir menu inicio">
-    <img class="start-button-icon" src={startIcon.src} alt="" />
+  <button class="start-button" type="button" aria-label="Abrir menú inicio">
+    <img class="start-button-icon" src={startIconSrc} alt="" />
     <span>Inicio</span>
   </button>
 
   <div class="taskbar-apps" id="taskbarApps"></div>
 
   <div class="taskbar-tray">
-    <img class="tray-icon" src={soundIcon.src} alt="" />
-    <img class="tray-icon" src={shieldIcon.src} alt="" />
+    <img class="tray-icon" src={soundIconSrc} alt="" />
+    <img class="tray-icon" src={shieldIconSrc} alt="" />
     <span id="taskbarClock">--:--</span>
   </div>
 </div>
