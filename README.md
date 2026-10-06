@@ -7,7 +7,12 @@ Portafolio personal construido con Astro que recrea la experiencia visual de un 
 - Astro como framework principal
 - CSS puro para la estética Emilio XP
 - JavaScript vanilla para la interacción de ventanas
-- Pendiente de despliegue
+- GitHub Pages para despliegue público
+- GitHub Actions para actualizar noticias y publicar el sitio
+
+## Sitio publicado
+
+https://super-emilio-molas.github.io/Portafolio-windows-xp/
 
 ## Estructura del proyecto
 
