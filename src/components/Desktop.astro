@@ -1,73 +1,130 @@
 ---
 import Window from './Window.astro';
+import pcIcon from '../assets/iconos_xp/123.ico';
+import folderIcon from '../assets/iconos_xp/160.ico';
+import mailIcon from '../assets/iconos_xp/163.ico';
+import internetIcon from '../assets/iconos_xp/106.ico';
+import musicIcon from '../assets/iconos_xp/306.ico';
+import recycleIcon from '../assets/iconos_xp/258.ico';
+import toolsIcon from '../assets/iconos_xp/330.ico';
+
+const desktopItems = [
+  { id: 'about', label: 'Mi PC', sublabel: 'Sobre mi', icon: pcIcon.src },
+  { id: 'proyectos', label: 'Mis proyectos', icon: folderIcon.src },
+  { id: 'contacto', label: 'Contacto', icon: mailIcon.src },
+  { id: 'internet', label: 'Internet', icon: internetIcon.src },
+  { id: 'musica', label: 'Mi musica', icon: musicIcon.src },
+  { id: 'papelera', label: 'Papelera', icon: recycleIcon.src },
+];
 ---
 
 <div class="desktop">
-  <!-- Iconos del escritorio -->
   <div class="desktop-icons">
-    <div class="desktop-icon" data-open="about">
-      <span class="desktop-icon-img">🖥️</span>
-      <span class="desktop-icon-label">Mi PC<br />(Sobre mí)</span>
-    </div>
-
-    <div class="desktop-icon" data-open="proyectos">
-      <span class="desktop-icon-img">📁</span>
-      <span class="desktop-icon-label">Mis proyectos</span>
-    </div>
-
-    <div class="desktop-icon" data-open="contacto">
-      <span class="desktop-icon-img">📧</span>
-      <span class="desktop-icon-label">Contacto</span>
-    </div>
-
-    <div class="desktop-icon" data-open="internet">
-      <span class="desktop-icon-img">🌐</span>
-      <span class="desktop-icon-label">Internet</span>
-    </div>
-
-    <div class="desktop-icon" data-open="musica">
-      <span class="desktop-icon-img">🎵</span>
-      <span class="desktop-icon-label">Mi música</span>
-    </div>
-
-    <div class="desktop-icon" data-open="papelera">
-      <span class="desktop-icon-img">🗑️</span>
-      <span class="desktop-icon-label">Papelera</span>
-    </div>
+    {
+      desktopItems.map((item) => (
+        <button class="desktop-icon" data-open={item.id} type="button" aria-label={`Abrir ${item.label}`}>
+          <img class="desktop-icon-img" src={item.icon} alt="" loading="eager" />
+          <span class="desktop-icon-label">
+            {item.label}
+            {item.sublabel && <small>{item.sublabel}</small>}
+          </span>
+        </button>
+      ))
+    }
   </div>
 
-  <!-- Ventanas (ocultas por defecto) -->
-  <Window id="about" title="Sobre mí - Mi PC" icon="🖥️" width={520} height={360} hidden>
-    <h2>¡Hola! Soy [Tu Nombre] 👋</h2>
-    <p>Soy desarrollador/a web y este es mi portafolio con temática Windows XP.</p>
-    <p>Aquí puedes conocerme un poco mejor y ver en qué trabajo.</p>
+  <Window id="about" title="Mi PC - Sobre mi" icon={pcIcon.src} width={560} height={370} top={62} left={154} hidden>
+    <section class="xp-intro">
+      <img src={pcIcon.src} alt="" />
+      <div>
+        <h2>Hola, soy Emilio</h2>
+        <p>Desarrollador web construyendo experiencias con una mezcla de nostalgia, detalle visual y codigo limpio.</p>
+      </div>
+    </section>
+    <div class="xp-info-grid">
+      <article>
+        <strong>Sistema</strong>
+        <span>Astro + componentes limpios</span>
+      </article>
+      <article>
+        <strong>Interfaz</strong>
+        <span>Windows XP, Bliss y ventanas clasicas</span>
+      </article>
+      <article>
+        <strong>Estado</strong>
+        <span>Disponible para nuevos proyectos</span>
+      </article>
+    </div>
   </Window>
 
-  <Window id="proyectos" title="C:\Mis Proyectos" icon="📁" width={600} height={400} hidden>
+  <Window id="proyectos" title="C:\Mis Proyectos" icon={folderIcon.src} width={650} height={430} top={88} left={218} hidden>
     <h2>Proyectos</h2>
-    <p>Aquí irán tus proyectos. Los conectaremos con Content Collections más adelante.</p>
+    <div class="project-list">
+      <article>
+        <img src={toolsIcon.src} alt="" />
+        <div>
+          <strong>Portafolio XP</strong>
+          <p>Interfaz tipo escritorio con ventanas, barra de tareas, iconos y fondo Bliss local.</p>
+        </div>
+      </article>
+      <article>
+        <img src={folderIcon.src} alt="" />
+        <div>
+          <strong>Proyecto destacado</strong>
+          <p>Espacio preparado para enlazar tu mejor trabajo, demo y repositorio.</p>
+        </div>
+      </article>
+      <article>
+        <img src={internetIcon.src} alt="" />
+        <div>
+          <strong>Experiencias web</strong>
+          <p>Landing pages, apps interactivas y sitios rapidos con foco en UI.</p>
+        </div>
+      </article>
+    </div>
   </Window>
 
-  <Window id="contacto" title="Outlook Express - Contacto" icon="📧" width={480} height={320} hidden>
+  <Window id="contacto" title="Outlook Express - Contacto" icon={mailIcon.src} width={500} height={335} top={114} left={282} hidden>
     <h2>Contacto</h2>
-    <p>📧 Email: tunombre@ejemplo.com</p>
-    <p>💼 LinkedIn: /in/tunombre</p>
-    <p>🐙 GitHub: @tunombre</p>
+    <div class="contact-list">
+      <a href="mailto:tunombre@ejemplo.com">tunombre@ejemplo.com</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+    <p class="xp-note">Actualiza estos enlaces con tus perfiles reales cuando quieras dejarlo listo para publicar.</p>
   </Window>
 
-  <Window id="internet" title="Internet Explorer" icon="🌐" width={520} height={360} hidden>
+  <Window id="internet" title="Internet Explorer" icon={internetIcon.src} width={540} height={360} top={78} left={330} hidden>
     <h2>Internet</h2>
-    <p>Enlaces a mis perfiles y redes.</p>
+    <p>Accesos rapidos a redes, demos y recursos personales.</p>
+    <div class="browser-bar">
+      <span>Direccion</span>
+      <code>https://tu-portafolio.dev</code>
+    </div>
+    <div class="link-grid">
+      <a href="https://github.com/" target="_blank" rel="noreferrer">Repositorio</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">Perfil profesional</a>
+      <a href="mailto:tunombre@ejemplo.com">Enviar email</a>
+    </div>
   </Window>
 
-  <Window id="musica" title="Winamp - Mi música" icon="🎵" width={420} height={280} hidden>
-    <h2>Lo que me gusta escuchar</h2>
-    <p>🎵 [Tus gustos musicales aquí]</p>
+  <Window id="musica" title="Winamp - Mi musica" icon={musicIcon.src} width={430} height={288} top={128} left={196} hidden>
+    <h2>Mi musica</h2>
+    <div class="winamp-panel">
+      <span>PLAY</span>
+      <strong>coding-session.mp3</strong>
+      <meter min="0" max="100" value="74">74%</meter>
+    </div>
+    <p>Un pequeno rincon para gustos, playlists o cualquier detalle personal que quieras sumar al portafolio.</p>
   </Window>
 
-  <Window id="papelera" title="Papelera de reciclaje" icon="🗑️" width={480} height={320} hidden>
-    <h2>Cosas que aprendí por el camino</h2>
-    <p>Notas, tips, curiosidades…</p>
+  <Window id="papelera" title="Papelera de reciclaje" icon={recycleIcon.src} width={480} height={320} top={144} left={258} hidden>
+    <h2>Cosas que aprendi por el camino</h2>
+    <ul class="xp-list">
+      <li>Prototipos que ensenaron decisiones de producto.</li>
+      <li>Detalles visuales que hacen que una interfaz se sienta viva.</li>
+      <li>Ideas viejas recicladas en componentes nuevos.</li>
+    </ul>
   </Window>
 </div>
 
@@ -79,6 +136,50 @@ import Window from './Window.astro';
     return document.getElementById(`window-${id}`);
   }
 
+  const taskbarApps = document.getElementById('taskbarApps');
+
+  function setActiveTaskbarButton(id: string) {
+    document.querySelectorAll('.taskbar-app').forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-window-target') === id);
+    });
+  }
+
+  function ensureTaskbarButton(win: HTMLElement) {
+    if (!taskbarApps) return;
+    const id = win.dataset.windowId;
+    if (!id || taskbarApps.querySelector(`[data-window-target="${id}"]`)) return;
+
+    const button = document.createElement('button');
+    button.className = 'taskbar-app';
+    button.type = 'button';
+    button.dataset.windowTarget = id;
+
+    const icon = win.dataset.windowIcon;
+    if (icon) {
+      const img = document.createElement('img');
+      img.src = icon;
+      img.alt = '';
+      button.appendChild(img);
+    }
+
+    const label = document.createElement('span');
+    label.textContent = win.dataset.windowTitle ?? id;
+    button.appendChild(label);
+
+    button.addEventListener('click', () => {
+      if (win.hidden) {
+        win.hidden = false;
+      }
+      bringToFront(win);
+    });
+
+    taskbarApps.appendChild(button);
+  }
+
+  function removeTaskbarButton(id: string) {
+    taskbarApps?.querySelector(`[data-window-target="${id}"]`)?.remove();
+  }
+
   function bringToFront(win: HTMLElement) {
     windows.forEach((w) => {
       w.classList.remove('active');
@@ -88,12 +189,14 @@ import Window from './Window.astro';
     win.classList.add('active');
     const tb = win.querySelector('.xp-titlebar');
     if (tb) tb.classList.remove('inactive');
+    setActiveTaskbarButton(win.dataset.windowId ?? '');
   }
 
   function openWindow(id: string) {
     const win = getWindow(id);
     if (!win) return;
     win.hidden = false;
+    ensureTaskbarButton(win);
     bringToFront(win);
   }
 
@@ -101,6 +204,7 @@ import Window from './Window.astro';
     const win = getWindow(id);
     if (!win) return;
     win.hidden = true;
+    removeTaskbarButton(id);
   }
 
   // Abrir al hacer click en un icono del escritorio
@@ -134,10 +238,23 @@ import Window from './Window.astro';
       if (action === 'close') closeWindow(id);
       if (action === 'minimize') win.hidden = true;
       if (action === 'maximize') {
-        win.style.width = '90vw';
-        win.style.height = 'calc(100vh - 60px)';
-        win.style.top = '10px';
-        win.style.left = '5vw';
+        if (win.dataset.maximized === 'true') {
+          win.style.width = win.dataset.restoreWidth ?? '';
+          win.style.height = win.dataset.restoreHeight ?? '';
+          win.style.top = win.dataset.restoreTop ?? '';
+          win.style.left = win.dataset.restoreLeft ?? '';
+          win.dataset.maximized = 'false';
+        } else {
+          win.dataset.restoreWidth = win.style.width;
+          win.dataset.restoreHeight = win.style.height;
+          win.dataset.restoreTop = win.style.top;
+          win.dataset.restoreLeft = win.style.left;
+          win.style.width = 'min(92vw, 860px)';
+          win.style.height = 'calc(100vh - 74px)';
+          win.style.top = '14px';
+          win.style.left = '4vw';
+          win.dataset.maximized = 'true';
+        }
       }
     });
   });
@@ -168,10 +285,13 @@ import Window from './Window.astro';
   window.addEventListener('mousemove', (e) => {
     if (!dragState) return;
     const { win, offsetX, offsetY } = dragState;
-    const newLeft = e.clientX - offsetX;
+    if (win.dataset.maximized === 'true') return;
+    const maxLeft = window.innerWidth - win.offsetWidth;
+    const maxTop = window.innerHeight - win.offsetHeight - 32;
+    const newLeft = Math.min(Math.max(0, e.clientX - offsetX), Math.max(0, maxLeft));
     const newTop = e.clientY - offsetY;
     win.style.left = `${newLeft}px`;
-    win.style.top = `${Math.max(0, newTop)}px`;
+    win.style.top = `${Math.min(Math.max(0, newTop), Math.max(0, maxTop))}px`;
   });
 
   window.addEventListener('mouseup', () => {

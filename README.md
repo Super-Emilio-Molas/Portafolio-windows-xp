@@ -1,46 +1,37 @@
-# Astro Starter Kit: Basics
+# Portafolio Windows XP
 
-```sh
-npm create astro@latest -- --template basics
-```
+Portafolio personal construido con Astro que recrea la experiencia visual de Windows XP. Incluye pantalla de arranque, escritorio con iconos, ventanas arrastrables y barra de tareas inferior. Cada aplicación del escritorio corresponde a una sección del portafolio: Sobre mí, Proyectos, Contacto, entre otras.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- Astro como framework principal
+- CSS puro para la estética Windows XP
+- JavaScript vanilla para la interacción de ventanas
+- Pendiente de despliegue
 
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura del proyecto
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+    src/
+    ├── layouts/
+    │   └── Layout.astro
+    ├── components/
+    │   ├── BootScreen.astro
+    │   ├── Desktop.astro
+    │   ├── Taskbar.astro
+    │   └── Window.astro
+    ├── pages/
+    │   └── index.astro
+    └── styles/
+        └── xp.css
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Ejecución en local
 
-## 🧞 Commands
+    git clone https://github.com/Super-Emilio-Molas/Portafolio-windows-xp.git
+    cd Portafolio-windows-xp
+    npm install
+    npm run dev
 
-All commands are run from the root of the project, from a terminal:
+## Autor
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Emilio Molas
+GitHub: https://github.com/Super-Emilio-Molas

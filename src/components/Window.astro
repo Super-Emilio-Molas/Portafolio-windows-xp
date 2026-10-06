@@ -3,21 +3,41 @@ interface Props {
   id: string;
   title: string;
   icon?: string;
+  iconAlt?: string;
   width?: number;
   height?: number;
+  top?: number;
+  left?: number;
+  hidden?: boolean;
 }
 
-const { id, title, icon = '📄', width = 480, height = 320 } = Astro.props;
+const {
+  id,
+  title,
+  icon = '',
+  iconAlt = '',
+  width = 480,
+  height = 320,
+  top = 80,
+  left = 160,
+  hidden = false,
+} = Astro.props;
+const isImageIcon = icon.includes('/') || icon.includes('.');
 ---
 
 <div
   class="xp-window"
   id={`window-${id}`}
   data-window-id={id}
-  style={`width:${width}px; height:${height}px; top:80px; left:160px;`}
+  data-window-title={title}
+  data-window-icon={icon}
+  style={`width:${width}px; height:${height}px; top:${top}px; left:${left}px;`}
+  hidden={hidden}
 >
   <div class="xp-titlebar" data-drag-handle>
-    <span class="xp-titlebar-icon">{icon}</span>
+    <span class="xp-titlebar-icon">
+      {isImageIcon ? <img src={icon} alt={iconAlt} /> : icon}
+    </span>
     <span class="xp-titlebar-title">{title}</span>
     <div class="xp-titlebar-buttons">
       <button class="xp-tb-btn" data-action="minimize" title="Minimizar">_</button>

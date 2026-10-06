@@ -1,18 +1,20 @@
 ---
-// Barra de tareas estilo XP
+import startIcon from '../assets/iconos_xp/351.ico';
+import soundIcon from '../assets/iconos_xp/72.ico';
+import shieldIcon from '../assets/iconos_xp/360.ico';
 ---
 
 <div class="taskbar">
-  <div class="start-button">
-    <span class="start-button-icon">🪟</span>
+  <button class="start-button" type="button" aria-label="Abrir menu inicio">
+    <img class="start-button-icon" src={startIcon.src} alt="" />
     <span>Inicio</span>
-  </div>
+  </button>
 
   <div class="taskbar-apps" id="taskbarApps"></div>
 
   <div class="taskbar-tray">
-    <span class="tray-icon">🔊</span>
-    <span class="tray-icon">🛡️</span>
+    <img class="tray-icon" src={soundIcon.src} alt="" />
+    <img class="tray-icon" src={shieldIcon.src} alt="" />
     <span id="taskbarClock">--:--</span>
   </div>
 </div>
