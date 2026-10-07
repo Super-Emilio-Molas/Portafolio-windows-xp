@@ -1,12 +1,15 @@
 # Portafolio Emilio XP
 
-Portafolio personal construido con Astro que recrea la experiencia visual de un escritorio clásico estilo XP. Incluye pantalla de arranque, escritorio con iconos, ventanas arrastrables y barra de tareas inferior. Cada aplicación del escritorio corresponde a una sección del portafolio: Sobre mí, Proyectos, Contacto, entre otras.
+Portafolio personal construido con Astro que recrea la experiencia visual de un escritorio clásico estilo XP. Presenta el perfil profesional de Emilio Molas con foco en soluciones digitales: landing pages, sitios web, pequeños ecommerce, aplicaciones internas y productos que combinan desarrollo, análisis funcional y QA.
+
+El sitio busca mostrar algo más que un stack técnico: comunica capacidad para entender necesidades de negocio, convertir ideas en experiencias web responsive y acompañar proyectos desde el relevamiento hasta la publicación.
 
 ## Stack
 
 - Astro como framework principal
 - CSS puro para la estética Emilio XP
 - JavaScript vanilla para la interacción de ventanas
+- Copy orientado a servicios web, landing pages y ecommerce iniciales
 - GitHub Pages para despliegue público
 - GitHub Actions para actualizar noticias y publicar el sitio
 
